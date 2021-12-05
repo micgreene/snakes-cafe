@@ -1,60 +1,65 @@
+# Creates an array of menu items tracking the names of the meals and how many you have ordered
 total_order = [
   {
-    'item': 'Wings',
+    'item': 'wings',
     'count': 0
   }, 
   {
-    'item': 'Cookies',
+    'item': 'cookies',
     'count': 0
   },
   {
-    'item': 'Spring Rolls',
+    'item': 'spring rolls',
     'count': 0
   },
   {
-    'item': 'Salmon',
+    'item': 'salmon',
     'count': 0
   },
   {
-    'item': 'Steak',
+    'item': 'steak',
     'count': 0
   },
   {
-    'item': 'Meat Tornado',
+    'item': 'meat tornado',
     'count': 0
   },
   {
-    'item': 'A Literal Garden',
+    'item': 'a literal garden',
     'count': 0
   },
   {
-    'item': 'Ice Cream',
+    'item': 'ice cream',
     'count': 0
   },
   {
-    'item': 'Cake',
+    'item': 'cake',
     'count': 0
   },
   {
-    'item': 'Pie',
+    'item': 'pie',
     'count': 0
   },
   {
-    'item': 'Coffee',
+    'item': 'coffee',
     'count': 0
   },
   {
-    'item': 'Tea',
+    'item': 'tea',
     'count': 0
   },
   {
-    'item': 'Unicorn Tears',
+    'item': 'unicorn tears',
     'count': 0
   }
 ]
 
+# The main function, prints a menu of all available meals then awaits input from the user to compare against the menu. Updates user with any orders placed and how many of the particular item ordered.
+# Input: None
+# Output: None
 def menu():
-  print(f'''**************************************
+  if first_time == True:
+    print(f'''**************************************
 **    Welcome to the Snakes Cafe!   **
 **    Please see our menu below.    **
 **                                  **
@@ -88,15 +93,49 @@ Unicorn Tears
 
 ***********************************
 ** What would you like to order? **
-***********************************''')
+***********************************''')  
 
-order = input('> ')
+  for food in total_order:
+    if food['item'] == order:
+      food['count'] += 1
+      if food['count'] > 1:
+        plural = 'orders'
+        verb = 'has'
+      else:
+        plural = 'order'
+        verb = 'have'
+      
+      order_item = food['item']
+      order_count = food['count']
+      print(f'** {order_count} {plural} of {order_item} {verb} been added to your meal **')
 
-for food in total_order:
-  if food['item'] == order:
-    food['count'] += 1
-    print(total_order)
-
-
+# main gate of program
+# calls the menu function to display choices to user then provides a prmopt to place an order with. While user is still ordering meals, choices are stored and the prompt is returned.
+# When a user selects to "quit" the final order is repeated back to the user and the app exits.
 if __name__ == '__main__':
+  order = ''
+  first_time = True
+  menu()
+  first_time = False
+  order = input('> ')
+  order = order.lower()
+  while order != 'quit' and order != 'q':
+    print(order)
     menu()
+    order = input('> ')
+    order = order.lower()     
+
+  if order == 'quit' or order == 'q':
+    print('To review, your final order is: ')
+    for food in total_order:         
+      if food['count'] > 0:
+        if food['count'] > 1:
+          plural = 'orders'
+          verb = 'has'
+        else:
+          plural = 'order'
+          verb = 'have'
+
+        print(f"{food['count']} {plural} of {food['item']}")
+    print('We\'ll have that out to you shortly and thank you for eating at the Snakes Cafe!')
+      
