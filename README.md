@@ -4,7 +4,6 @@
 
 + *A command line utility which mimics the functionality of a point of sale restaurant system using the basic tools of the Python language.*
 
-
 ### Feature Tasks and Requirements
 
 + When run, the program should print an intro message and the menu for the restaurant.
@@ -26,7 +25,7 @@
 
 ### Pull Request
 
-+ [Pull Request](URL '')
++ [snakes-cafe/pull/1](URL 'https://github.com/micgreene/snakes-cafe/pull/1')
 
 ### README
 
